@@ -1,9 +1,21 @@
 'use strict';
 
-var angular = require('angular');
+var angular = require('angular'),
+    ngResource = require('angular-resource'),
 
-angular.module('services', ['ngResource']);
-angular.module('directives', []);
-angular.module('controllers', ['services']);
+    //angular modules
+    services = angular.module('services', ['ngResource']),
+    directives = angular.module('directives', []),
+    controllers = angular.module('controllers', ['services']),
 
-var app = angular.module('app', ['directives', 'controllers']);
+    //app
+    app = angular.module('app', ['directives', 'controllers']),
+
+    //app module containers
+    directivesContainer = require('./directives/directivesContainer');
+
+
+//initialize the whole shebang
+directivesContainer(directives);
+
+module.exports = app;

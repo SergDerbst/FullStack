@@ -15,7 +15,7 @@ var browserify   = require('browserify'),
     source       = require('vinyl-source-stream'),
     config       = require('../../config').browserify;
 
-gulp.task('browserify', ['jshint'], function() {
+gulp.task('browserify', function() {
     var bundler = browserify({
         //required watchify args
         cache: {}, packageCache: {}, fullPaths: true,

@@ -18,8 +18,9 @@ var bodyParser = require('body-parser'),
         app.get('/', function(req, res) {
             res.render('index', {title: 'My Super App'});
         });
-        app.get('/partials/:name', function(req, res) {
-            res.render('partials' + req.params.name);
+        app.get('/partials/*', function(req, res) {
+            console.log(req.originalUrl);
+            res.render(req.originalUrl.substring(1));
         });
     };
 
