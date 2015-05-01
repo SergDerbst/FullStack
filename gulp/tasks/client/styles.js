@@ -7,7 +7,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-ruby-sass'),
     handleErrors = require('../../util/handleErrors'),
-    config=require('../../config').frontend.styles;
+    config=require('../../config').styles;
 
 gulp.task('styles', ['images'], function () {
     return sass(config.src, {

@@ -13,9 +13,9 @@ var browserify   = require('browserify'),
     gulp         = require('gulp'),
     handleErrors = require('../../util/handleErrors'),
     source       = require('vinyl-source-stream'),
-    config       = require('../../config').frontend.browserify;
+    config       = require('../../config').browserify;
 
-gulp.task('browserify', ['libs'], function() {
+gulp.task('browserify', ['jshint'], function() {
     var bundler = browserify({
         //required watchify args
         cache: {}, packageCache: {}, fullPaths: true,

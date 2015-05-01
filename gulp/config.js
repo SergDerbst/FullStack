@@ -5,10 +5,10 @@ var dirs = {
         distDir: './dist',
         frontend: {
             imagesDir: '/main/public/images',
-            libDir: '/main/public/lib',
+            publicDir: '/main/public',
             scriptsDir: '/main/public/js',
             stylesDir: '/main/public/css',
-            viewsDir: '/views'
+            viewsDir: '/main/views'
         },
         backend: {
             scriptsDir: '/main'
@@ -16,43 +16,44 @@ var dirs = {
     };
 
 module.exports = {
-    //listening port for browsersync
-    serverport: 5000,
-    frontend: {
-        browserSync: {
-            server: {
-                baseDir: [dirs.distDir, dirs.appDir]
-            },
-            files: [dirs.distDir + '/**', '!' + dirs.distDir + '/**.map']
+    browserSync: {
+        server: {
+            baseDir: dirs.distDir + dirs.frontend.publicDir
         },
-        browserify: {
-            bundleName: 'app.js',
-            dest: dirs.distDir + dirs.frontend.scriptsDir,
-            entryPoint: dirs.appDir + dirs.frontend.scriptsDir + '/app.js'
-        },
-        images: {
-            src: dirs.appDir + dirs.frontend.imagesDir + '/**',
-            dest: dirs.distDir + dirs.frontend.imagesDir
-        },
-        libs: {
-            src: dirs.appDir + dirs.frontend.libDir + '/**/*.js',
-            dest: dirs.distDir + dirs.frontend.libDir
-        },
-        styles: {
-            src: dirs.appDir + dirs.frontend.stylesDir + '/**/*.{sass, scss}',
-            dest: dirs.distDir + dirs.frontend.stylesDir
-        },
-        views: {
-            src: dirs.appDir + dirs.frontend.viewsDir + '**/*.jade',
-            dest: dirs.distDir + dirs.frontend.viewsDir
-        }
+        files: [dirs.publicDir + '/**', '!' + dirs.distDir + '/**.map']
     },
-    backend: {
+    browserify: {
+        bundleName: 'app.js',
+        dest: dirs.distDir + dirs.frontend.scriptsDir,
+        entryPoint: dirs.appDir + dirs.frontend.scriptsDir + '/app.js'
+    },
+    images: {
+        src: dirs.appDir + dirs.frontend.imagesDir + '/**',
+        dest: dirs.distDir + dirs.frontend.imagesDir
+    },
+    jshint: {
+        src: [
+            dirs.appDir + dirs.backend.scriptsDir + '/**/*.js'
+        ]
+    },
+    styles: {
+        src: dirs.appDir + dirs.frontend.stylesDir + '/**/*.{sass, scss}',
+        dest: dirs.distDir + dirs.frontend.stylesDir
+    },
+    views: {
+        src: dirs.appDir + dirs.frontend.viewsDir + '/**/*.jade',
+        dest: dirs.distDir + dirs.frontend.viewsDir
+    },
+    server: {
         run: {
-            file: 'server.js'
+            fileToRun: dirs.distDir + dirs.backend.scriptsDir + '/server.js',
+            filesToWatch: dirs.distDir + dirs.backend.scriptsDir + '/**'
         },
         scripts: {
-            src: dirs.appDir + dirs.backend.scriptsDir + '**/*.js',
+            src: [
+                dirs.appDir + dirs.backend.scriptsDir + '/**/*.js',
+                dirs.appDir + '!' + dirs.frontend.scriptsDir
+            ],
             dest: dirs.distDir + dirs.backend.scriptsDir
         }
     }
