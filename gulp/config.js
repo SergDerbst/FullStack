@@ -1,62 +1,74 @@
 //configuration of gulp tasks
 
-var dirs = {
-        appDir: './app',
-        distDir: './dist',
-        frontend: {
-            imagesDir: '/main/public/images',
-            libDir: '/main/public/lib',
-            publicDir: '/main/public',
-            scriptsDir: '/main/public/js',
-            stylesDir: '/main/public/css',
-            viewsDir: '/main/views'
-        },
-        backend: {
-            scriptsDir: '/main'
-        }
+var appDir = './app',
+    distDir = './dist',
+    nodeModulesDir = './node_modules',
+    mainDir = '/main',
+    publicDir = '/public',
+    backend = {
+        scriptsDir: mainDir
+    },
+    frontend = {
+        imagesDir: mainDir + publicDir + '/images',
+        publicDir: mainDir + publicDir,
+        scriptsDir: mainDir + publicDir + '/js',
+        stylesDir: mainDir + publicDir + '/css',
+        viewsDir: mainDir + '/views'
+    },
+    nodeModules = {
+        fontAwesomeFonts: '/font-awesome/fonts/**.*',
+        fontAwesomeScss: '/font-awesome/scss/'
     };
 
 module.exports = {
     browserSync: {
         server: {
-            baseDir: dirs.distDir + dirs.frontend.publicDir
+            baseDir: distDir + frontend.publicDir
         },
-        files: [dirs.publicDir + '/**', '!' + dirs.distDir + '/**.map']
+        files: [frontend.publicDir + '/**', '!' + distDir + '/**.map']
     },
     browserify: {
         bundleName: 'app.js',
-        dest: dirs.distDir + dirs.frontend.scriptsDir,
-        entryPoint: dirs.appDir + dirs.frontend.scriptsDir + '/app.js'
+        dest: distDir + frontend.scriptsDir,
+        entryPoint: appDir + frontend.scriptsDir + '/app.js'
+    },
+    icons: {
+        src: nodeModulesDir + nodeModules.fontAwesomeFonts,
+        dest: distDir + frontend.publicDir + '/fonts'
     },
     images: {
-        src: dirs.appDir + dirs.frontend.imagesDir + '/**',
-        dest: dirs.distDir + dirs.frontend.imagesDir
+        src: appDir + frontend.imagesDir + '/**',
+        dest: distDir + frontend.imagesDir
     },
     jshint: {
         src: [
-            dirs.appDir + dirs.backend.scriptsDir + '/**/*.js',
-            '!' + dirs.appDir + dirs.frontend.libDir + '/**/*.js'
+            appDir + backend.scriptsDir + '/**/*.js',
         ]
     },
+    scripts: {
+        src: appDir + frontend.scriptsDir + '/**/*.js'
+    },
     styles: {
-        src: dirs.appDir + dirs.frontend.stylesDir + '/**/*.{sass, scss}',
-        dest: dirs.distDir + dirs.frontend.stylesDir
+        appSrc: appDir + frontend.stylesDir,
+        fontSrc: nodeModulesDir + nodeModules.fontAwesomeScss,
+        cssDest: distDir + frontend.stylesDir,
+        mapsDest: './maps'
     },
     views: {
-        src: dirs.appDir + dirs.frontend.viewsDir + '/**/*.jade',
-        dest: dirs.distDir + dirs.frontend.viewsDir
+        src: appDir + frontend.viewsDir + '/**/*.jade',
+        dest: distDir + frontend.viewsDir
     },
     server: {
         run: {
-            fileToRun: dirs.distDir + dirs.backend.scriptsDir + '/server.js',
-            filesToWatch: dirs.distDir + dirs.backend.scriptsDir + '/**'
+            fileToRun: distDir + backend.scriptsDir + '/server.js',
+            filesToWatch: distDir + backend.scriptsDir + '/**'
         },
         scripts: {
             src: [
-                dirs.appDir + dirs.backend.scriptsDir + '/**/*.js',
-                dirs.appDir + '!' + dirs.frontend.scriptsDir
+                appDir + backend.scriptsDir + '/**/*.js',
+                appDir + '!' + frontend.scriptsDir
             ],
-            dest: dirs.distDir + dirs.backend.scriptsDir
+            dest: distDir + backend.scriptsDir
         }
     }
 };

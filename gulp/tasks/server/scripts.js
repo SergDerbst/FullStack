@@ -7,5 +7,4 @@ var gulp = require('gulp'),
 
 gulp.task('scripts', ['jshint'], function() {
     return gulp.src(config.src).pipe(gulp.dest(config.dest));
-        //TODO uglify for production
 });

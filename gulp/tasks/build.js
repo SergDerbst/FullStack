@@ -5,7 +5,7 @@
 
 var gulp = require('gulp');
 
-gulp.task('client', ['browserify', 'styles', 'images', 'views']);
+gulp.task('client', ['browserify', 'icons', 'styles', 'images', 'views']);
 gulp.task('server', ['client', 'scripts']);
 gulp.task('build', ['server', 'client']);
 

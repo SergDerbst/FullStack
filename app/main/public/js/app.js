@@ -16,6 +16,6 @@ var angular = require('angular'),
 
 
 //initialize the whole shebang
-directivesContainer(directives);
+directivesContainer(angular);
 
 module.exports = app;

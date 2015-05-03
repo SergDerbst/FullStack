@@ -1,49 +1,41 @@
-/*
-    browserify task
-    ---------------
-    Bundle app JS files with browserify.
-
-    If the watch task is runnin, this will use watchify instead of browserify
-    for faster bundling using caching.
- */
+'use strict';
 
 var browserify   = require('browserify'),
-    watchify     = require('watchify'),
+    browserSync  = require('browser-sync'),
+    buffer       = require('vinyl-buffer'),
     bundleLogger = require('../../util/bundleLogger'),
     gulp         = require('gulp'),
     handleErrors = require('../../util/handleErrors'),
     source       = require('vinyl-source-stream'),
+    uglify       = require('gulp-uglify'),
+    watchify     = require('watchify'),
     config       = require('../../config').browserify;
 
 gulp.task('browserify', function() {
     var bundler = browserify({
-        //required watchify args
-        cache: {}, packageCache: {}, fullPaths: true,
-        //entry point of the app
-        entries: config.entryPoint,
-        //enable source maps
-        debug: true
-    });
+            cache: {},
+            packageCache: {},
+            fullPaths: true,
+            entries: config.entryPoint,
+            debug: true
+        }),
+        bundle = function() {
+            bundleLogger.start(config.entryPoint);
+            return bundler
+                .bundle()
+                .pipe(source(config.bundleName))
+                .pipe(buffer())
+                //.pipe(uglify())
+                .pipe(gulp.dest(config.dest))
+                .pipe(browserSync.reload({stream: true}))
+                .on('error', handleErrors)
+                .on('end', bundleLogger.end);
+        };
 
-    var bundle = function() {
-        bundleLogger.start(config.entryPoint);
-
-        return bundler
-            .bundle()
-            //report errors
-            .on('error', handleErrors)
-            //use vinyl-source-stream to make stream gulp compatible
-            .pipe(source(config.bundleName))
-            //distribute bundle
-            .pipe(gulp.dest(config.dest))
-            .on('end', bundleLogger.end);
-    };
-
+    console.log(browserSync.reload);
     if (global.isWatching) {
         bundler = watchify(bundler);
-        //rebundle with watchify on changes
         bundler.on('update', bundle);
     }
-
     return bundle();
 });

@@ -1,10 +1,10 @@
 'use stricts';
 
 module.exports = {
-    fsHeader: function (module) {
-        module.directive('fsHeader', [function () {
+    fsHeader: function (angular) {
+        angular.module('directives').directive('fsHeader', [function () {
             return {
-                replace: true,
+                replace: false,
                 restrict: 'E',
                 templateUrl: 'partials/layout/header'
             };

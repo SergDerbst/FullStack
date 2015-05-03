@@ -9,7 +9,6 @@ var gulp  = require('gulp'),
 
 gulp.task('watch', ['setWatch', 'browserSync'], function() {
     gulp.watch(config.images.src, ['images', browserSync.reload]);
-    gulp.watch(config.server.scripts.src, ['scripts']);
-    gulp.watch(config.styles.src, ['styles', browserSync.reload]);
+    gulp.watch(config.styles.appSrc + '/**/*.scss', ['styles', browserSync.reload]);
     gulp.watch(config.views.src, ['views', browserSync.reload]);
 });
