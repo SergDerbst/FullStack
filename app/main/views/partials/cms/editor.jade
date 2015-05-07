@@ -3,18 +3,16 @@ div(id="contentEditor", class="fs-modalDialog")
         div(class="fs-dialogHeader")
             a(class="close upper-right-corner", href="#close", title="Close")
                 i(class="fa fa-close fa-lg")
-            h3 Content Control
+            div(class="section group")
+                div(class="col span_5_of_8")
+                    div Content Control
+            div(class="section group")
         form(class="fs-form")
-            div(class="fs-dialogNavigator")
+            div(class="fs-dialogContent")
                 div(class="section group")
                     div(class="col span_5_of_8")
                         div(class="fs-label") Editing content for:
                             i {{ header.id }}
-                    div(class="col span_3_of_8" style="text-align: center")
-                        button(type="button", class="fs-button") Save
-                        button(type="button", class="fs-button") Publish
-                div(class="section group")
-            div(class="fs-dialogContent")
-                div(class="section group")
-                    div(id="contentPane", class="fs-scroll")
+                        div(id="contentPane", class="fs-contentPane fs-scroll")
+                            h3 Je suis le content!
                 div(class="section group")

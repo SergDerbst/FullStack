@@ -1,3 +1,5 @@
+@import "colorScheme";
+
 .fs-cms {
   color: #000;
 
@@ -7,29 +9,40 @@
     box-shadow: 2px 2px 1px #888;
     padding: 2px;
   }
+
 }
 
+.fs-contentPane {
+  position: relative;
+  margin-left: 10px;
+  height: 50%;
+  min-height: 300px;
+  background: $cms-color-primary-1;
+  border-radius: 2px;
+}
 
+//form
 .fs-form {
   > input {
     &[type="text"] {
       border: solid #fff 1px;
-      border-radius: 3px;
+      border-radius: 1px;
     }
   }
 }
 
 .fs-label {
-  color: #000;
+  color: $cms-color-secondary-1-3;
   font-size: 0.8em;
-  line-height: 1;
+  line-height: 2;
+  margin-left: 10px;
 
   > i {
-    color: #444;
     margin-left: 10px;
   }
 }
 
+//dialog
 .fs-modalDialog {
   font-family: 'Roboto', sans-serif;
   position: fixed;
@@ -37,14 +50,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0,0,0,0.8);
+  background: $cms-color-primary-4;
   z-index: 99999;
   opacity:0;
   transition: opacity 200ms ease-out;
   pointer-events: none;
 
   &:target {
-    opacity: 1;
+    opacity: 0.9;
     pointer-events: auto;
   }
 
@@ -53,31 +66,36 @@
     height: 95%;
     position: relative;
     margin: 2.5% auto;
-    background: #fff;
+    background: $cms-color-secondary-2-2;
+    border-radius: 15px 15px 10px 10px;
   }
-
-  > a {
-    color: #000;
-  }
-
 }
 
 .fs-dialogHeader {
-  color: #F0EEEC;
-  background: #8A7F6F;
-  padding: 5px 20px 5px 20px;
+  color: $cms-color-secondary-2-0;
+  background: $cms-color-primary-3;
+  border-radius: 10px 10px 0 0;
+  line-height: 3;
+  font-size: 2em;
+  /* padding: 5px 20px 5px 20px; */
   text-align: center;
 }
 
 .fs-dialogNavigator {
-  padding: 5px 0 5px 10px;
+  padding: 0 0 0 10px;
+}
+
+//utils
+.fs-scroll {
+  overflow: auto;
+  padding: 8px;
 }
 
 .fs-button {
   display: inline-block;
   position: relative;
   top: 80%;
-  margin-right: 5px;
+  margin: 5px 5px 0 0;
   padding: 10px 10px;
   width: 40%;
   min-width: 80px;
@@ -99,13 +117,13 @@
 
 .close {
   background: transparent;
-  color: #000;
+  color: $cms-color-secondary-2-2;
   padding: 2%;
   height: 20px;
   width: 20px;
 }
 
-
+//positioning
 .upper-right-corner {
   position: absolute;
   top: 0;
