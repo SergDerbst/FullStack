@@ -1,8 +1,20 @@
-div(class="cms trigger")
-    a(class="cms trigger", href="#contentEditor", data-fs-cms-trigger="'caption'")
-        i(class="fa fa-pencil fa-lg")
-    div(id="contentEditor", class="modalDialog")
-        div
-            a(href="#close", title="Close", class="close") X
-            h2 Na Du?
-            p Mach mich glücklich!
+div(id="contentEditor", class="fs-modalDialog")
+    div
+        div(class="fs-dialogHeader")
+            a(class="close upper-right-corner", href="#close", title="Close")
+                i(class="fa fa-close fa-lg")
+            h3 Content Control
+        form(class="fs-form")
+            div(class="fs-dialogNavigator")
+                div(class="section group")
+                    div(class="col span_5_of_8")
+                        div(class="fs-label") Editing content for:
+                            i {{ header.id }}
+                    div(class="col span_3_of_8" style="text-align: center")
+                        button(type="button", class="fs-button") Save
+                        button(type="button", class="fs-button") Publish
+                div(class="section group")
+            div(class="fs-dialogContent")
+                div(class="section group")
+                    div(id="contentPane", class="fs-scroll")
+                div(class="section group")

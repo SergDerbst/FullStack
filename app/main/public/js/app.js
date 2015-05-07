@@ -2,20 +2,18 @@
 
 var angular = require('angular'),
     ngResource = require('angular-resource'),
+    moduleInitializer = require('./moduleInitializer'),
 
     //angular modules
     services = angular.module('services', ['ngResource']),
-    directives = angular.module('directives', []),
     controllers = angular.module('controllers', ['services']),
+    directives = angular.module('directives', ['controllers']),
 
     //app
-    app = angular.module('app', ['directives', 'controllers']),
-
-    //app module containers
-    directivesContainer = require('./directives/directivesContainer');
+    app = angular.module('app', ['services', 'controllers', 'directives']);
 
 
-//initialize the whole shebang
-directivesContainer(angular);
+//initialize modules
+moduleInitializer.init(angular);
 
 module.exports = app;

@@ -2,17 +2,31 @@
 
 module.exports = {
     fsContentEditable: function(angular) {
-        angular.module('directives').directive('fsContentEditable', [function() {
+        angular.module('directives').directive('fsContentEditable', ['$rootScope', function($rootScope) {
             return {
                 restrict: 'A',
-                templateUrl: 'partials/cms/editor',
+                templateUrl: 'partials/cms/trigger',
                 link: function(scope, elem, attrs) {
-                    scope.editable = {
-                        id: attrs.id,
-                        type: attrs.fsContentEditable
-                    };
+                    elem.on('mouseup', function() {
+                        $rootScope.$broadcast('cmsTrigger', {
+                            id: attrs.id,
+                            containerEl: elem
+                        });
+                    });
                 }
             };
         }]);
+    },
+    fsContentEditor: function(angular) {
+        angular.module('directives').directive('fsContentEditor', [
+            function() {
+                return {
+                    restrict: 'E',
+                    templateUrl: 'partials/cms/editor',
+                    replace: true,
+                    controller: 'ContentEditorController'
+                }
+            }
+        ]);
     }
 };

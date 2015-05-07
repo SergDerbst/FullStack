@@ -1,16 +1,38 @@
-.cms {
-  .trigger {
+.fs-cms {
+  color: #000;
+
+  .fs-trigger {
     border: black solid 1px;
     border-radius: 10%;
     box-shadow: 2px 2px 1px #888;
-    color: #000;
     padding: 2px;
   }
 }
 
-.modalDialog {
+
+.fs-form {
+  > input {
+    &[type="text"] {
+      border: solid #fff 1px;
+      border-radius: 3px;
+    }
+  }
+}
+
+.fs-label {
+  color: #000;
+  font-size: 0.8em;
+  line-height: 1;
+
+  > i {
+    color: #444;
+    margin-left: 10px;
+  }
+}
+
+.fs-modalDialog {
+  font-family: 'Roboto', sans-serif;
   position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
   top: 0;
   right: 0;
   bottom: 0;
@@ -27,12 +49,65 @@
   }
 
   > div {
-    width: 400px;
+    width: 90%;
+    height: 95%;
     position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
+    margin: 2.5% auto;
     background: #fff;
-    background: linear-gradient(#fff, #999);
   }
+
+  > a {
+    color: #000;
+  }
+
+}
+
+.fs-dialogHeader {
+  color: #F0EEEC;
+  background: #8A7F6F;
+  padding: 5px 20px 5px 20px;
+  text-align: center;
+}
+
+.fs-dialogNavigator {
+  padding: 5px 0 5px 10px;
+}
+
+.fs-button {
+  display: inline-block;
+  position: relative;
+  top: 80%;
+  margin-right: 5px;
+  padding: 10px 10px;
+  width: 40%;
+  min-width: 80px;
+  max-width: 120px;
+  max-height: 50px;
+  background: #524F5F;
+  line-height: 1;
+  color: #E3E1ED;
+  font-size: 1em;
+  appearance: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+
+  &:hover {
+    background: #1B1A1F;
+  }
+}
+
+.close {
+  background: transparent;
+  color: #000;
+  padding: 2%;
+  height: 20px;
+  width: 20px;
+}
+
+
+.upper-right-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

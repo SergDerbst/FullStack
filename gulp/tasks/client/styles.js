@@ -8,6 +8,8 @@ var gulp = require('gulp'),
     sass = require('gulp-ruby-sass'),
     prefix = require('gulp-autoprefixer'),
     sourcemap = require('gulp-sourcemaps'),
+    eventStream = require('event-stream'),
+    concat = require('gulp-concat'),
     handleErrors = require('../../util/handleErrors'),
     config=require('../../config').styles;
 
@@ -19,10 +21,13 @@ gulp.task('styles', ['icons', 'images'], function () {
         })
             .on('error', handleErrors)
             .pipe(prefix('last 1 version', '> 1%', 'ie 8'))
-            .pipe(sourcemap.write(config.mapsDest))
-            .pipe(gulp.dest(config.cssDest));
+            .pipe(sourcemap.write(config.mapsDest));
     };
 
-    sasser(config.fontSrc);
-    return sasser(config.appSrc);
+    var vendorFiles = sasser(config.fontSrc),
+        appFiles = sasser(config.appSrc);
+
+    return eventStream.concat(vendorFiles, appFiles)
+        .pipe(concat('app.css'))
+        .pipe(gulp.dest(config.cssDest));
 });
