@@ -1,5 +1,8 @@
 'use strict';
 
 module.exports = [
-    require('./cms/cmsResource')
+    require('./cms/contentResource'),
+    require('./cms/contentContainer'),
+    require('./cms/contentRenderer'),
+    require('./cms/contentService')
 ];

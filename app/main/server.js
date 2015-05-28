@@ -4,7 +4,7 @@ var bodyParser = require('body-parser'),
     express = require('express'),
     path = require('path'),
     app = express(),
-    router = express.Router(),
+    routes = require('./routes/index'),
     port = 3000,
     //MongoDbConnector = require('./modules/mongoDbConnector'),
     //mongoDb = new MongoDbConnector(app),
@@ -14,14 +14,7 @@ var bodyParser = require('body-parser'),
         app.use(bodyParser.urlencoded({ extended: true}));
         app.use(bodyParser.json());
         app.use(express.static(__dirname + '/public'));
-        app.use('/api', router);
-        app.get('/', function(req, res) {
-            res.render('index', {title: 'My Super App'});
-        });
-        app.get('/partials/*', function(req, res) {
-            console.log(req.originalUrl);
-            res.render(req.originalUrl.substring(1));
-        });
+        app.use('/', routes);
     };
 
 init();

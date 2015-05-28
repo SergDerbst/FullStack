@@ -49,7 +49,7 @@ module.exports = {
         src: appDir + frontend.scriptsDir + '/**/*.js'
     },
     styles: {
-        appSrc: appDir + frontend.stylesDir,
+        appSrc: appDir + frontend.stylesDir + '/application.scss',
         fontSrc: nodeModulesDir + nodeModules.fontAwesomeScss,
         cssDest: distDir + frontend.stylesDir,
         mapsDest: './maps'

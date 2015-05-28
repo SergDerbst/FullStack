@@ -1,13 +1,13 @@
-'use stricts';
+'use strict';
 
 module.exports = {
     fsHeader: function (angular) {
-        angular.module('directives').directive('fsHeader', [function () {
+        angular.module('fsCms').directive('fsHeader', [function () {
             return {
                 replace: false,
                 restrict: 'E',
                 templateUrl: 'partials/layout/header'
             };
-        }])
+        }]);
     }
 };

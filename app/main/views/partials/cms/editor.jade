@@ -1,18 +1,20 @@
 div(id="contentEditor", class="fs-modalDialog")
     div
         div(class="fs-dialogHeader")
-            a(class="close upper-right-corner", href="#close", title="Close")
-                i(class="fa fa-close fa-lg")
-            div(class="section group")
-                div(class="col span_5_of_8")
-                    div Content Control
-            div(class="section group")
-        form(class="fs-form")
-            div(class="fs-dialogContent")
-                div(class="section group")
-                    div(class="col span_5_of_8")
-                        div(class="fs-label") Editing content for:
-                            i {{ header.id }}
-                        div(id="contentPane", class="fs-contentPane fs-scroll")
-                            h3 Je suis le content!
-                div(class="section group")
+            div Content Control
+        div(class="fs-dialogNavigator")
+            div(class="fs-label") Editing content for:
+                i {{ header.id }}
+        div(class="fs-dialogContent")
+            div
+                form(class="fs-form")
+                    div(class="section group")
+                        div(class="col span_5_of_8")
+                            div(id="contentPane", class="fs-contentPane fs-scroll")
+                        div(class="col span_3_of_8")
+                            fs-cms-content-control
+                    div(class="section group")
+                        div(class="col span_5_of_8")
+                            fs-cms-content-input
+                        div(class="col span_3_of_8")
+                            fs-cms-content-type

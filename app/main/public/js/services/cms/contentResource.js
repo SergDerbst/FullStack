@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = {
-    cmsResource: function(angular) {
-        angular.module('services').factory('cmsResource', [
+    contentResource: function(angular) {
+        angular.module('fsCms').factory('contentResource', [
             '$resource',
             function($resource) {
                 return $resource('api/cms/editor', {}, {
-                    fetch: { method: 'POST', params: {id: '@id'}}
+                    fetch: { method: 'GET', params: {id: '@id'}}
                 });
             }
-        ])
+        ]);
     }
 };

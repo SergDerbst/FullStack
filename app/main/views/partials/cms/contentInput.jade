@@ -1,0 +1,10 @@
+div(class="section group")
+    div(class="fs-contentInput")
+        div(data-ng-if="selectedType.label === 'Audio'")
+            fs-cms-content-input-audio
+        div(data-ng-if="selectedType.label === 'Image'")
+            fs-cms-content-input-image
+        div(data-ng-if="selectedType.label === 'Text'")
+            fs-cms-content-input-text
+        div(data-ng-if="selectedType.label === 'Video'")
+            fs-cms-content-input-video

@@ -1,0 +1,13 @@
+div
+    div(class="section group")
+        div(class="col span_4_of_8")
+            div(class="section group")
+                div(class="col span_5_of_8")
+                    label(for="contentType", class="fs-label") Type:
+                div(class="col span_3_of_8")
+                    select(name="contentType", class="fs-styled-select", data-ng-model="selectedType", data-ng-options="type.label for type in types")
+            div(class="section group")
+                div(class="col span_5_of_8")
+                    label(for="contentTag", class="fs-label") Tag:
+                div(class="col span_3_of_8")
+                    select(name="contentTag", class="fs-styled-select", data-ng-model="selectedTag", data-ng-options="tag for tag in tags")
